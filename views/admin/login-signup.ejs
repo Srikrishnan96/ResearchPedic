@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs')%>
+
+<%-include('../includes/admin-navigation.ejs')%>
+
+<main>
+        <div class="d-flex justify-content-center">
+                <div class="card mt-5 w-75">
+                            <div class="card-body">
+                                <p class="text-dark mb-3 text-center" style="font-size: 30px">Login</p>
+                                <form class="px-1" action="/admin/login-signup" method="POST">
+                                    <input class="form-control" type="text" name="email" placeholder="Email"><br>
+                                   
+                                    <input class="form-control" type="password" name="password" placeholder="Password"><br>
+                                    
+                                    <button class="form-control btn btn-primary" type="submit">Login</button>
+                                </form>
+                                <div class="mt-5">
+                                    <hr data-content='OR'>
+                                </div>
+                                <p class="text-dark mb-3 text-center" style="font-size: 30px">Sign Up</p>
+                                <form class="px-1" action="/user/signup" method="POST">
+                                    <input class="form-control" type="text" name="userName" placeholder="Username"><br>
+
+                                    <input class="form-control" type="email" name="email" placeholder="Email"><br>
+                                   
+                                    <input class="form-control" type="password" name="password" placeholder="Password"><br>
+
+                                    <input class="form-control" type="password" name="passwordConfirm" placeholder="Confirm Password"><br>
+                                    
+                                    <button class="form-control btn btn-primary" type="submit">Sign Up</button>
+                                </form>
+                            </div>
+                </div>
+            </div>
+</main>
+
+<%-include('../includes/foot.ejs')%>

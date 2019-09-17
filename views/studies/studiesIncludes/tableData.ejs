@@ -1,0 +1,29 @@
+<% Object.values(studies).forEach(study => {%>
+    <tr class="table-content">
+        <td scope="col"><a href="http://localhost:3040/all-researches/<%= study.id%>"><%= study.subject%></a></td>
+        <td scope="col"><a href="https://maps.google.com/?q=${number} ${street} ${city} ${state}" target="_blank"><%= study.location%></a></td>
+        <td scope="col"><%= study.gender%></td>
+        <td scope="col"><%= study.age%></td>
+        <td scope="col"><%= study.payout%></td>
+        <td scope="col"><%= study.published%></td>
+        <td scope="col"><%= study.expiry%></td>
+        <td scope="col" class="text-center">
+            <% if(!registeredStudies.includes(study.id)) {%>
+                <form action='/user/register' method="POST">
+                    <input type='hidden' name='regPostId' value='<%= study.id%>'>
+                    <button class="btn btn-secondary">
+                        Register
+                    </button>
+                </form>
+            <% } else {%>
+                <form action='/user/cancel' method="POST">
+                    <input type="hidden" name="prevPath" value="<%= prevPath%>">
+                    <input type='hidden' name='cancelPostId' value='<%= study.id%>'>
+                    <button class="btn btn-danger">
+                        Cancel
+                    </button>
+                </form>
+            <% }%>
+        </td>
+    </tr>
+<% })%>

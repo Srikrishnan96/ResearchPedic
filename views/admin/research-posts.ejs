@@ -1,0 +1,56 @@
+<%- include('../includes/head.ejs')%>
+
+<%-include('../includes/admin-navigation.ejs')%>
+
+<main>
+    <form class="text-center my-3" action='/admin/post-study' method="GET">
+        <button class="btn btn-light text-success btn-outline-success">
+            New Research Study
+        </button>
+    </form>
+    <% if(postedStudies.length > 0) {%>
+        <table class="table table-striped table-bordered table-hover mx-auto mt-5 w-75">
+                <thead class="bg-info text-light">
+                    <tr class="mr-4">
+                        <th scope="col">Subject</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Payout</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Expiry</th>
+                        <th scope="col">Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                        <% postedStudies.forEach(study => {%>
+                                <tr class="table-content">
+                                    <td scope="col"><%= study.subject%></td>
+                                    <td scope="col"><%= study.location%></td>
+                                    <td scope="col"><%= study.gender%></td>
+                                    <td scope="col"><%= study.age%></td>
+                                    <td scope="col"><%= study.payout%></td>
+                                    <td scope="col"><%= study.published%></td>
+                                    <td scope="col"><%= study.expiry%></td>
+                                    <td scope="col">
+                                        <form action="/admin/edit-study" method="POST">
+                                            <input type="hidden" value="<%= study._id%>" name="studyId">
+                                            <button class="btn btn-success">Edit</button>
+                                        </form>
+                                        <form action="/admin/delete-study" method="POST">
+                                                <input type="hidden" value="<%= study._id%>" name="studyId">
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
+                                    </td>
+                                </tr>
+                    <% })%>
+                </tbody>
+            </table>
+                </div>
+        </div>
+    <% } else {%>
+        <div>
+            <p>No Research Posts Available</p>
+        </div>
+    <% }%>
+</main>

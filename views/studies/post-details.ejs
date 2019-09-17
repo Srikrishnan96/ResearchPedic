@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs')%>
+<%- include('../includes/navigation.ejs')%>
+<main>
+    <div>
+        <h3>Description</h3>
+        <p><%= study.description%></p>
+    </div>
+    <div>
+        <h6>Published: <%= study.published%></h6>
+        <h6>Location: <%= study.location%></h6>
+        <h6>Payout: <%= study.payout%></h6>
+        <h6>Gender: <%= study.gender%></h6>
+        <h6>Age Range: <%= study.age%></h6>
+        <h6>Expiry: <%= study.expiry%></h6>
+    </div>
+    <div>
+        <% if(!registeredStudies.includes(study.id)) {%>
+            <form action='/user/register' method="POST">
+                <input type='hidden' name='regPostId' value='<%= study.id%>'>
+                <button class="btn btn-secondary">
+                    Register
+                </button>
+            </form>
+        <% } else {%>
+            <form action='/user/cancel' method="POST">
+                <input type='hidden' name='cancelPostId' value='<%= study.id%>'>
+                <button class="btn btn-danger">
+                    Cancel
+                </button>
+            </form>
+        <% }%>
+    </div>
+</main>
+
+<%- include('../includes/foot.ejs')%>

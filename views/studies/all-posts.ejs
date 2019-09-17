@@ -1,0 +1,21 @@
+<%- include('../includes/head.ejs')%>
+<%- include('../includes/navigation.ejs')%>
+<main>
+    <% if(Object.keys(studies).length > 0) {%>
+        <table class="table table-striped table-bordered table-hover mx-auto mt-5 w-75 text-center">
+                <thead class="bg-info text-light">
+                    <%- include('./studiesIncludes/tableHead.ejs')%>
+                </thead>
+                <tbody class="table-body">
+                        <%- include('./studiesIncludes/tableData.ejs')%>
+                </tbody>
+            </table>
+    <% } else {%>
+        <div>
+            <p>No Research Posts Available</p>
+        </div>
+    <% }%>
+    <p style="font-size: 30px"><%= loggedInUser%></p>
+</main>
+
+<%- include('../includes/foot.ejs')%>

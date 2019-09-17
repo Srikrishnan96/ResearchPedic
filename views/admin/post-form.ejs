@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="card my-3 w-70">
+            <div class="card-header">
+                    <h4>Research Study Details</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/admin/post-study" method="POST">
+                        <% if(study) {%>
+                            <input class="form-control" type="text" name="subject" placeholder="Subject of Research" disabled value="<%= study.subject%>"><br>
+                            <input type="hidden" name="subject" value="<%= study.subject%>">
+                            <input class="form-control"  type="text" name="location" placeholder="Facility" disabled value="<%= study.location%>"><br>
+                            <input type="hidden" name="location" value="<%= study.location%>">
+                            <input type="hidden" name="m_id" value="<%= study._id%>">
+                            <input class="form-control" type="text" name="gender" placeholder="Gender" value="<%=study.gender%>"><br>
+                            <input class="form-control" type="text" name="age" placeholder="Age Group" value="<%=study.age%>"><br>
+                            <input class="form-control" type="text" name="payout" placeholder="Payout" value="<%=study.payout%>"><br>
+                            <input class="form-control" type="text" name="expiry" placeholder="Expiry" value="<%=study.expiry%>"><br>
+                            <textarea class="form-control" rows="7" name="description" placeholder="description"><%=study.description%></textarea><br>
+                        <% } else {%>
+                            <input class="form-control" type="text" name="subject" placeholder="Subject of Research"><br>
+                            <input class="form-control"  type="text" name="location" placeholder="Facility"><br>
+                            <input class="form-control" type="text" name="gender" placeholder="Gender"><br>
+                            <input class="form-control" type="text" name="age" placeholder="Age Group"><br>
+                            <input class="form-control" type="text" name="payout" placeholder="Payout"><br>
+                            <input class="form-control" type="text" name="expiry" placeholder="Expiry"><br>
+                            <textarea class="form-control" rows="7" name="description" placeholder="description"></textarea><br>
+                        <% }%>
+                        <button class="form-control btn btn-primary" type="submit">Submit</button>
+                    </form>
+                </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </body>
+</html>

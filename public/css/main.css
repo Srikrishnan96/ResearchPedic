@@ -1,0 +1,50 @@
+.search {  
+    border-radius: 10px; 
+    float: right; 
+    height: 30px;
+    font-size: 12px; 
+    border: 1px solid white; 
+    padding: 5px 20px 5px 10px; 
+    width: 175px;
+    }
+
+div.card-header:hover { 
+    cursor: pointer; 
+    background-color: white; 
+    }
+
+div.card-header:active {
+    background-color: #F5F5F5;
+    }
+    
+input:focus { 
+    outline: none; 
+    }
+    
+.fa-bars:hover { 
+    color: #E0E0E0; 
+    }
+    
+.desc{ 
+    text-align: justify;
+    }
+    
+.ml-10 { 
+    margin-left: 10px;
+    }
+
+.back-button {
+    position: absolute;
+    top: -70px;
+    left: 30px;
+    border: 2px solid #D3D3D3;
+    border-radius: 5px;
+    }
+    
+.back-button:focus { 
+    outline: none; 
+    }
+    
+.button-div { 
+    position: relative;
+    }
