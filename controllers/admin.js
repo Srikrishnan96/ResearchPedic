@@ -1,6 +1,4 @@
 const Study = require('../models/Study');
-const Admin = require('../models/Admin');
-const ObjectId = require('mongodb').ObjectId;
 
 exports.postStudyForm = function(req, res) {
     const { subject, location, gender, age, payout, expiry, description, m_id} = req.body;
@@ -14,8 +12,6 @@ exports.getStudyForm = function(req, res) {
 }
 
 exports.researchPosts = function(req, res) {
-    console.log(req.session.adminIsLoggedIn);
-        //const postedStudies = req.session.admin.postedStudies
         res.render('admin/research-posts', {
             pageTitle: 'Admin-Study-Posts', loggedInUser: req.session.admin,
             postedStudies: req.session.admin.postedStudies
@@ -25,7 +21,6 @@ exports.researchPosts = function(req, res) {
 exports.editStudy = function(req, res) {
     const studyId = req.body.studyId;
     Study.findById(studyId).then(study => {
-        console.log(study);
         res.render('admin/post-form', {
             pageTitle: 'Edit-Study',
             study: study

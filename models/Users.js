@@ -25,7 +25,7 @@ module.exports = class User {
 
     static userValidationCreation({userName, email, password}) {
         const db = getDb();
-        db.collection('users').findOne({email: email}).then( user => {
+        db.collection('users').findOne({email: email}).then(user => {
             if(user) {
                 console.log('user already exists');
             } else {
@@ -35,10 +35,10 @@ module.exports = class User {
         })
     }
 
-    mySurveys() {
+    myRegistrations() {
         const db = getDb();
-        return db.collection('researchStudies').find({id: {$in: this.registeredStudies}}).toArray().catch(err => {
-            console.log(err);
+        return db.collection('researchStudies').find({id: {$in: this.registeredStudies}}).toArray().catch(function(err) {
+            throw err;
         });
     }
 }

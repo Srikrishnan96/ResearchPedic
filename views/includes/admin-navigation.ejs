@@ -6,14 +6,9 @@
     </span>
     <span>
         <form action="/admin/logout" class="<%= loggedInUser?'disp-inline' : 'disp-none'%>" method="POST">
-            <button class='btn btn-light text-secondary mr-3' style="float: right">
+            <button class='btn text-light mr-3' style="float: right">
                     Logout
             </button>
         </form>
-        <div class="<%= loggedInUser?'disp-inline' : 'disp-none'%>">
-            <button class="btn btn-light px-3" style="border-radius: 30px; float: right">
-                    <%= loggedInUser%>
-            </button>
-        </div>
     </span>
 </nav>

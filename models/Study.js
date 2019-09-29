@@ -9,7 +9,7 @@ function findResearchStudy(oneId, idArr) {
     if(findParam) {
         return db.collection('researchStudies').find(findParam).toArray()
         .catch(err =>  { 
-            throw err 
+            throw err;
         });
     }
     return db.collection('researchStudies').find().toArray()
@@ -30,6 +30,7 @@ module.exports = class Study {
         this.id = timestamp('YYMMDDHHmmssms')
         this._id = m_id?new ObjectId(m_id):null;
         this.studyAdmin = studyAdmin;
+        this.published = timestamp('MM/DD/YYYY');
     }
 
     saveStudy(admin) {
@@ -37,7 +38,7 @@ module.exports = class Study {
         if(!this._id)
         {
             db.collection('researchStudies').insertOne(this).catch(err => {
-                console.log(err);
+                throw err;
             });
             const postedStudies = admin.postedStudies;
             postedStudies.push(this);
@@ -54,11 +55,11 @@ module.exports = class Study {
             admin.postedStudies[studyIndex].payout = this.payout;
             admin.postedStudies[studyIndex].expiry = this.expiry;
             admin.postedStudies[studyIndex].description = this.description;
-            db.collection('researchStudies').updateOne({_id: this._id}, {$set: {age: this.age, gender: this.gender, expiry: this.expiry, description: this.description, payout: this.payout}}).catch(err => {
-            console.log(err);
+            db.collection('researchStudies').updateOne({_id: this._id}, {$set: {age: this.age, gender: this.gender, expiry: this.expiry, description: this.description, payout: this.payout}}).catch(function(err) {
+                throw err;
             });
-            db.collection('adminUser').updateOne({_id: new ObjectId(admin._id)}, {$set: {postedStudies: admin.postedStudies}}).catch(err => {
-                console.log(err);
+            db.collection('adminUser').updateOne({_id: new ObjectId(admin._id)}, {$set: {postedStudies: admin.postedStudies}}).catch(function(err) {
+                throw err;
             });
         }
     }
@@ -69,22 +70,22 @@ module.exports = class Study {
 
     static findById(studyId) {
         const db = getDb();
-        return db.collection('researchStudies').findOne({_id: new ObjectId(studyId)}).catch(err => {
-            console.log(err);
+        return db.collection('researchStudies').findOne({_id: new ObjectId(studyId)}).catch(function(err) {
+            throw err;
         });
     }
 
     static deleteById(studyId, admin) {
         const db = getDb();
-        db.collection('researchStudies').deleteOne({_id: new ObjectId(studyId)}).catch(err => {
-            console.log(err);
+        db.collection('researchStudies').deleteOne({_id: new ObjectId(studyId)}).catch(function(err) {
+            throw err;
         });
         const studyIndex = admin.postedStudies.findIndex(study => {
             return study._id.toString() === studyId.toString()
         });
         admin.postedStudies.splice(studyIndex, 1);
-        return db.collection('adminUser').updateOne({_id: new ObjectId(admin._id)}, {$set: {postedStudies: admin.postedStudies}}).catch(err => {
-            console.log(err);
+        return db.collection('adminUser').updateOne({_id: new ObjectId(admin._id)}, {$set: {postedStudies: admin.postedStudies}}).catch(function(err) {
+            throw err;
         });
     }
 }

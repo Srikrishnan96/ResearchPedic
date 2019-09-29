@@ -8,12 +8,11 @@ const routeLoginValidation = function(req, res, next) {
         next();
     }
     else {
-        res.redirect('/user/login');
+        res.redirect('/user/login'); 
     }
 }
-// router.post('/my-surveys', usersController.mySurveys);
 
-router.get('/my-surveys', routeLoginValidation, usersController.showmySurveys);
+router.get('/my-surveys', routeLoginValidation, usersController.showMyRegistrations);
 
 router.get('/login', authController.getUserLogin);
 
@@ -21,12 +20,10 @@ router.post('/login', authController.postUserLogin);
 
 router.post('/logout', authController.postUserLogout);
 
-// router.get('/signup', usersController.userSignUp);
-
 router.post('/signup', usersController.postUserSignup);
 
-router.post('/register', routeLoginValidation, usersController.registerStudy)
+router.post('/register', routeLoginValidation, usersController.register);
 
-router.post('/cancel', usersController.cancelStudy)
+router.post('/cancel', usersController.cancelRegistration);
 
 module.exports = router;

@@ -13,7 +13,7 @@ module.exports = class Admin {
     addAdmin() {
         const db = getDb();
         db.collection('adminUser').insertOne(this).catch(err => {
-            console.log(err);
+            throw err;
         });
     }
 

@@ -1,13 +1,7 @@
 const Study = require('../models/Study');
-const userController = require('./users');
-const User = require('../models/Users.js');
 const getDb = require('../utilities/database').getDb;
 
 exports.showStudies = function(req, res) {
-    var loggedUser = null;
-    if(req.user){
-        loggedUser = req.user;
-    }
     Study.showAll().then(studies => res.render('studies/all-posts', {
         studies: studies,
         pageTitle: 'Research Studies',
@@ -33,5 +27,3 @@ exports.researchDetails = function(req, res) {
         });
     });
 }
-
-//exports.showStudiesWithUser = function

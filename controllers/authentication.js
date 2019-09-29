@@ -1,6 +1,5 @@
 const getDb = require('../utilities/database').getDb;
 
-
 exports.getUserLogin = function(req, res) {
     res.render('users/login-signup', {
         pageTitle: 'User Login-Signup',
@@ -15,22 +14,22 @@ exports.postUserLogin = function(req, res) {
     const db = getDb();
     db.collection('users').findOne({email: email}).then(user => {
         if(user && user.password === password) {
-            const {userName, password, email, registeredStudies, _id} = user;
-            req.session.user = {userName, password, email, _id, registeredStudies};
+            const {_id} = user;
+            req.session.user_id = _id;
             res.redirect('/all-researches');
         } else {
             console.log('Username or Password Invalid');
             res.redirect('/user/login');
         }
-    }).catch(err => {
-        console.log(err);
+    }).catch(function(err) {
+        throw err;
     })
 }
 
 exports.postUserLogout = function(req, res) {
-    delete req.session.user;
-    delete req.session.isLoggedIn;
-    res.redirect('/');
+    req.session.destroy(function() {
+        res.redirect('/all-researches');
+    });
 }
 
 exports.getAdminLogin = function(req, res) {
@@ -48,21 +47,21 @@ exports.postAdminLogin = function(req, res) {
     db.collection('adminUser').findOne({email: email})
     .then(admin => {
         if(admin && admin.password === password) {
-            const {userName, password, email, postedStudies, _id} = admin;
-            req.session.admin = {userName, email, password, postedStudies, _id};
+            const {_id} = admin;
+            req.session.admin_id = _id;
             res.redirect('/admin/research-posts');
         } else {
             console.log('Username or Password Invalid');
             res.redirect('/user/login');
         }
     })
-    .catch(err => {
-        console.log(err);
+    .catch(function(err) {
+        throw err;
     });
 }
 
 exports.postAdminLogout = function(req, res) {
-    delete req.session.admin;
-    delete req.session.adminIsLoggedIn;
-    res.redirect('/');
+    req.session.destroy(function() {
+        res.redirect('/');
+    });
 }
