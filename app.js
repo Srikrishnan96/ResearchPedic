@@ -36,7 +36,6 @@ app.use(function(req, res, next) {
         .then(function(admin) { 
             const {userName, email, password, _id, postedStudies} = admin;
             req.session.admin = new Admin(userName, email, password, postedStudies, _id);
-            console.log(req.session.user); 
             next();
         })
         .catch(function(err) {
