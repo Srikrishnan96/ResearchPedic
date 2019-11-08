@@ -1,44 +1,11 @@
-const getDb = require('../utilities/database').getDb;
-const ObjectId = require('mongodb').ObjectId;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = class User {
-    constructor(userName, password, email, m_id, registeredStudies) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.registeredStudies = registeredStudies?registeredStudies:[];
-        this._id = m_id?new ObjectId(m_id):null;
-    }
+const userSchema = new Schema({
+    name: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+    registeredStudies: [{type: Schema.Types.ObjectId, ref: 'Study'}]
+});
 
-    addUser() {
-        const db = getDb();
-        db.collection('users').insertOne(this)
-        .catch(err => {
-            throw err;
-        })
-    }
-
-    static findUser(userId) {
-        const db = getDb();
-        return db.collection('users').findOne({_id: new ObjectId(userId)}).catch(err => { throw err; })
-    }
-
-    static userValidationCreation({userName, email, password}) {
-        const db = getDb();
-        db.collection('users').findOne({email: email}).then(user => {
-            if(user) {
-                console.log('user already exists');
-            } else {
-                let newUser = new User(userName, password, email);
-                newUser.addUser();
-            }
-        })
-    }
-
-    myRegistrations() {
-        const db = getDb();
-        return db.collection('researchStudies').find({id: {$in: this.registeredStudies}}).toArray().catch(function(err) {
-            throw err;
-        });
-    }
-}
+module.exports = mongoose.model('User', userSchema);

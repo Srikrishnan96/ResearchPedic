@@ -14,7 +14,7 @@
         <h6>Expiry: <%= study.expiry%></h6>
     </div>
     <div>
-        <% if(!registeredStudies.includes(study.id)) {%>
+        <% if(!registered) {%>
             <form action='/user/register' method="POST">
                 <input type='hidden' name='regPostId' value='<%= study.id%>'>
                 <button class="btn btn-secondary">

@@ -1,27 +1,11 @@
-const getDb = require('../utilities/database').getDb;
-const ObjectId = require('mongodb').ObjectId;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = class Admin {
-    constructor(userName, email, password, postedStudies, m_id) {
-        this.name = userName;
-        this.email = email;
-        this.password = password;
-        this.postedStudies = postedStudies?postedStudies:[];
-        this._id = m_id?new ObjectId(m_id):null;
-    }
+const adminSchema = new Schema({
+    name: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+    postedStudies: [{type: Schema.Types.ObjectId, ref: 'Study'}]
+});
 
-    addAdmin() {
-        const db = getDb();
-        db.collection('adminUser').insertOne(this).catch(err => {
-            throw err;
-        });
-    }
-
-    static findAdmin(adminId) {
-        const db = getDb();
-        return db.collection('adminUser').findOne({_id: new ObjectId(adminId)})
-        .catch(err => {
-            throw err;
-        });
-    }
-}
+module.exports = mongoose.model('Admin', adminSchema);

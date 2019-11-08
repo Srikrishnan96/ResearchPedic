@@ -30,8 +30,8 @@
                                     <td scope="col"><%= study.gender%></td>
                                     <td scope="col"><%= study.age%></td>
                                     <td scope="col"><%= study.payout%></td>
-                                    <td scope="col"><%= study.published%></td>
-                                    <td scope="col"><%= study.expiry%></td>
+                                    <td scope="col"><%= study.published.toString().split(' ').splice(1,3).join(' ')%></td>
+                                    <td scope="col"><%= study.expiry.toString().split(' ').splice(1,3).join(' ')%></td>
                                     <td scope="col">
                                         <form action="/admin/edit-study" method="POST">
                                             <input type="hidden" value="<%= study._id%>" name="studyId">

@@ -1,12 +1,12 @@
-<% Object.values(studies).forEach(study => {%>
+<% studies.forEach(study => {%>
     <tr class="table-content">
-        <td scope="col"><a href="http://localhost:3040/all-researches/<%= study.id%>"><%= study.subject%></a></td>
+        <td scope="col"><a href="http://localhost:3050/all-researches/<%= study.id%>"><%= study.subject%></a></td>
         <td scope="col"><a href="https://maps.google.com/?q=${number} ${street} ${city} ${state}" target="_blank"><%= study.location%></a></td>
         <td scope="col"><%= study.gender%></td>
         <td scope="col"><%= study.age%></td>
         <td scope="col"><%= study.payout%></td>
-        <td scope="col"><%= study.published%></td>
-        <td scope="col"><%= study.expiry%></td>
+        <td scope="col"><%= study.published.toString().split(' ').splice(1,3).join(' ')%></td>
+        <td scope="col"><%= study.expiry.toString().split(' ').splice(1,3).join(' ')%></td>
         <td scope="col" class="text-center">
             <% if(!registeredStudies.includes(study.id)) {%>
                 <form action='/user/register' method="POST">

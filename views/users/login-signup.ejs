@@ -8,8 +8,8 @@
                             <div class="card-body">
                                 <p class="text-dark mb-3 text-center" style="font-size: 30px">Login</p>
                                 <form class="px-1" action="/user/login" method="POST">
-                                    <input class="form-control" type="text" name="email" placeholder="Email"><br>
-                                   
+                                    <input class="form-control" type="text" name="email" placeholder="Email" value='<%= loginIdFill%>'><br>
+                                    
                                     <input class="form-control" type="password" name="password" placeholder="Password"><br>
                                     
                                     <button class="form-control btn btn-primary" type="submit">Login</button>

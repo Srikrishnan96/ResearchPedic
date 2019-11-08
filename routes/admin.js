@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const adminController = require('../controllers/admin');
-const authController = require('../controllers/authentication');
+const authController = require('../controllers/auth');
 
 const routeLoginValidation = function(req, res, next) {
-    console.log(req.session.admin);
     if(req.session.admin){
         next();
     }
@@ -20,11 +19,13 @@ router.post('/post-study', adminController.postStudyForm);
 
 router.get('/research-posts', routeLoginValidation, adminController.researchPosts);
 
-router.get('/login-signup', authController.getAdminLogin);
+router.get('/login-signup', adminController.getAdminLogin);
 
 router.post('/login-signup', authController.postAdminLogin);
 
-router.post('/logout', authController.postAdminLogout);
+router.post('/logout', adminController.postAdminLogout);
+
+router.post('/signup', authController.postAdminSignup);
 
 router.post('/edit-study', adminController.editStudy);
 

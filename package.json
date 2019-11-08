@@ -10,12 +10,14 @@
   "author": "Srikrishnan",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bootstrap": "^4.3.1",
     "connect-mongodb-session": "^2.2.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "mongodb": "^3.3.2",
+    "mongoose": "^5.7.1",
     "time-stamp": "^2.2.0"
   },
   "devDependencies": {
