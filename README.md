@@ -6,5 +6,5 @@ Client views using EJS</br>
 Server side authentication of client login and signup</br>
 Mailing service, outsourced from SendGrid https://app.sendgrid.com/ </br>
 Backend MongoDB ATLAS for storing client details </br>
-Mongoose.js to interact with cloud MongoDB </br>
+Mongoose.js to interact with cloud MongoDB https://mongoosejs.com/docs/api.html </br>
 
