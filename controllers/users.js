@@ -54,7 +54,7 @@ exports.register = function(req, res, next) {
                 </html>
                 `,
               };
-            sendGrid.setApiKey('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');
+            sendGrid.setApiKey('###############');
             sendGrid.send(msg);
         })
         .catch(function(err) {
